@@ -1,0 +1,13 @@
+Cryptography - common tool used to protect data. Ex: web traffic using HTTPS protocol (SSL / TLS),  Wi-Fi traffic using the WPA2 protocol, that's part of 801.11i, Cell phone traffic using an encryption mechanism in GSM, Bluetooth traffic, etc.
+also for content protection. Ex: DVD uses a system called CSS, the Content Scrambling System, CSS, and Blu-Ray uses a system called AACS.
+(CSS is fairly easy to break) also for user authentication.
+TLS consists two parts: 1)handshake (secret shared key)
+no proprietary ciphers, since can be broken by reverse enginnering.
+old encryption standard WEP, to encrypt Wi-Fi traffic contained many mistakes in it.
+digital signature, anonymous communication (mixnet) ex: anonymous digital cash (if used more than once as a copy/duplicate, identity is exposed)
+private outsourcing computation ex: Google queries.
+3 steps: precisely specify threat model, propose a construction, prove that breaking construction under a threat mode will solve an underlying hard problem.
+caesar cipher, a substitution cipher, alphabet shifted.
+size of key space in the substitution cipher assuming n letters is n!.
+break a substitution cipher: 1)use frequency of english letters (e,t,a, 2)use frequency of digrams (he,an,in,th) : ciphertext only attack
+break vigener cipher: assume the length of the key, break the encrypted cipher to the groups of that length, 
