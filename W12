@@ -1,0 +1,5 @@
+ONE TIME PAD
+Vernam cipher: message space = ciphertext space = key space. Ex: c = k XOR m :E and k XOR c = m :D
+perfect secrecy: P[ E(k,m0)=c ] = P[ E(k,m1)=c ] i.e; k is random uniform var.
+- no CT attacks possible unlike previous ciphers
+limitation: 1)long key 2) |k|>=|m|
