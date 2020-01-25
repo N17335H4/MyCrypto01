@@ -3,3 +3,12 @@ Vernam cipher: message space = ciphertext space = key space. Ex: c = k XOR m :E 
 perfect secrecy: P[ E(k,m0)=c ] = P[ E(k,m1)=c ] i.e; k is random uniform var.
 - no CT attacks possible unlike previous ciphers
 limitation: 1)long key 2) |k|>=|m|
+STREAM CIPHER
+PRG pseudo-random key is used here despite total random key. seed space s << output space n.
+c = m XOR G(k) and m = c XOR G(k)
+no perfect secrecy coz key length is shorter than message.
+should be unpredictable [predictable: with some algo, later set of bits of G(k) can be known from former bits. For Ex: smtp, every message starts with a word from colon]
+-never use linear congruented generator { r[0]=seed, r[i] = a*r[i-1]+b modp , easy to predict when analysed few o/p samples}, never use glibc rand generator (for same reason)
+Attack1: two time pad - so never use same pad to encrypt different messages [if c1, c2 for m1, m2; we have c1 xor c2 = m11 xor m2; especially ASCII codes have enough redundancy]
+real life Ex of above: project venona, MS-PPTP(Windows NT) [network traffic solved by using different keys between server and client], 802.11bWEP [could solve by concatenating the segments of message as a one long stream: each frame for better construction], disk encryption
+Attack2: no integrity (easy to modify)
