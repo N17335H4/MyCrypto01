@@ -21,3 +21,11 @@ ii) (0,0) 16 bits or 2 bytes of sequence is found more often. iii) related key (
 Attack: seed of 5bytes (US limit for keys), use 17 bit (seed = 1 concatenated with first 2 bytes of seed) and 25 bit (seed = 1 concatenated with last 3 bytes of seed) LFSRs, both are run for 8 cycles so they generate 8 bits of output each, through adder (+mod256 with carry from previous block), outputs as 1 byte per round, which is used XOR'd to appropriate byte of DVD to encrypt.
 it is easy to break above in 2^17 time, since they have prefix MPEG which when XOR'd with that #bits of encrypted sequence, we get initial PRG, now we run for 2^17 possible values of first LFSR, we can take the PRG and subtract it from the output that we got from the first LFSR, and if in fact our guess for the initial state of the first LFSR is correct, what we should get is the prefix output of the second LFSR.
 3) eStream (has 5 stream ciphers, one of it is) Salsa20
+
+goal of PRG: indistinguishable from random. 
+Statistical Test algo takes in n bit string and gives 0 or 1 as output. 1 if random otherwise 0. they have many methods/conditions. 
+D:concept of advantage tells whether the statistical test is good or not. value of advantage = [0,1], if close to zero then it can't distinguish with random, hence efficient mostly (check for many methods).
+no secure PRG since it implies P != NP
+yao theorem: if unpredictable at i then secure.
+
+semantic security:
