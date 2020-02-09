@@ -12,3 +12,12 @@ should be unpredictable [predictable: with some algo, later set of bits of G(k) 
 Attack1: two time pad - so never use same pad to encrypt different messages [if c1, c2 for m1, m2; we have c1 xor c2 = m11 xor m2; especially ASCII codes have enough redundancy]
 real life Ex of above: project venona, MS-PPTP(Windows NT) [network traffic solved by using different keys between server and client], 802.11bWEP [could solve by concatenating the segments of message as a one long stream: each frame for better construction], disk encryption
 Attack2: no integrity (easy to modify)
+
+real-world stream ciphers:
+1) RC4: takes a variable size seed = key (let it be 128bits), firstly seed expands (to say 2048bits), which gonna be used as internal state for generator, ssimple loop executed where every iteration yields 1 byte of output. used in HTTPS & WEP.
+weakness: i)second byte (not just 2nd later got known that till first 256bytes) of RC4 is slightly biased (probability for it to be zero should be 1/256 but it's 2/256).
+ii) (0,0) 16 bits or 2 bytes of sequence is found more often. iii) related key (close to exact one) attacks are possible
+2) CSS: used to encrypt DVD, GSM, Bluetooth. LFSR - Linear Forward Shift Register, contains cells each of 1bit, initial state of LSR = seed, taps at certain positions feed into an XOR, every clock cycle - register shifts left, last bit falls off and first bit becomes result of XOR.
+Attack: seed of 5bytes (US limit for keys), use 17 bit (seed = 1 concatenated with first 2 bytes of seed) and 25 bit (seed = 1 concatenated with last 3 bytes of seed) LFSRs, both are run for 8 cycles so they generate 8 bits of output each, through adder (+mod256 with carry from previous block), outputs as 1 byte per round, which is used XOR'd to appropriate byte of DVD to encrypt.
+it is easy to break above in 2^17 time, since they have prefix MPEG which when XOR'd with that #bits of encrypted sequence, we get initial PRG, now we run for 2^17 possible values of first LFSR, we can take the PRG and subtract it from the output that we got from the first LFSR, and if in fact our guess for the initial state of the first LFSR is correct, what we should get is the prefix output of the second LFSR.
+3) eStream (has 5 stream ciphers, one of it is) Salsa20
