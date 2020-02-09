@@ -28,4 +28,12 @@ D:concept of advantage tells whether the statistical test is good or not. value 
 no secure PRG since it implies P != NP
 yao theorem: if unpredictable at i then secure.
 
-semantic security:
+semantic security (one-time key, attacker is given ciphertextt only): 
+//pre-requisite: Shannon's theorem of perfect secrecy - no info leak about PT from CT
+Suppose a cryptosystem with |K|=|C|=|P|. The cryptosystem has perfect secrecy if and only if 
+- each key is used with equal probability 1/|K|, 
+- for every plaintext x and ciphertext y there is a unique key k such that e_k(x)=y. 
+for all efficient adversaries, the advantange is negligible.
+for one time pad, regardless of the adversary, advantage is zero => it is semantically secure.
+//Wb from original semantic Rb from one time pad semantic encryption
+stream cipher is semantically secure assuming PRG is secure.
