@@ -1,2 +1,3 @@
 Block ciphers:
 longer the key, slower the cipher is, more secure.
+key k expands into a sequence k1 to kn called round keys. iteratively encrypts the message again and again called round function, 
