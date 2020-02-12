@@ -1,3 +1,7 @@
 Block ciphers:
 longer the key, slower the cipher is, more secure.
-key k expands into a sequence k1 to kn called round keys. iteratively encrypts the message again and again called round function, 
+key k expands into a sequence k1 to kn called round keys. iteratively encrypts the message again and again called round function R(k,m) - inputs are round key and current state of message, yield final ouput - cipher 
+the 2 block ciphers have considerably less performance numbers than stream ciphers.
+Pseudo random function (PRF): an abstract concept, no need to be invertible, just be evaluatable. Pseudo random permutation (PRP) - ideal, one-to-one, invertible.
+the adversar gets either the cipher from random function or PRF. If PRF is secure, any random function is indistinguishable from PRF in SF. so the adversary couldn't be able to trace out.
+PRF to PRG: seed space = key space. key property - parallelizable (both even and odd cores are computed, implies that it run twice as fast as if single core is used). it's an example of parallelizable stream cipher, but previously in stream ciphers, we couldn't increase the speed by increasing the processors.
